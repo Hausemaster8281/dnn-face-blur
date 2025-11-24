@@ -25,4 +25,6 @@ def main():
         if not ret:
             print("Error: Failed to capture frame.")
             break
+        # Convert the frame to grayscale, for face detection
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
