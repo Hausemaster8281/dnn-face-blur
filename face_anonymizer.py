@@ -69,3 +69,13 @@ def main():
                     k_w = (endX - startX) // 3 | 1 # Make sure it is odd
                     k_h = (endY - startY) // 3 | 1
                     blurred_face = cv2.GaussianBlur(face_roi, (k_w, k_h), 30)
+                    # Replace the original face area with the blurred version
+                    frame[startY:endY, startX:endX] = blurred_face
+
+                    # Draws a rectangle around the face, simultaneously displaying confidence
+                    text = "{:.2f}%".format(confidence * 100)
+                    y = startY - 10 if startY - 10 > 10 else startY + 10
+                    cv2.rectangle(frame, (startX, startY), (endX, endY), (0, 255, 0), 2)
+                    cv2.putText(frame, text, (startX, y),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 0), 2)
+
