@@ -47,3 +47,7 @@ def main():
         net.setInput(blob)
         detections = net.forward()
 
+        # Loop over the detections
+        for i in range(0, detections.shape[2]):
+            # Extract the confidence/probability associated with the prediction
+            confidence = detections[0, 0, i, 2]
