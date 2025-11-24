@@ -62,4 +62,10 @@ def main():
                 (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
                 # Extract the face ROI
                 face_roi = frame[startY:endY, startX:endX]
-
+                
+                if face_roi.shape[0] > 0 and face_roi.shape[1] > 0:
+                    # Strong Gaussian Blur will be applied to face ROI
+                    # The kernel size (99, 99) determines the strength of the blur (Must be odd numbers for maximal effectiveness)
+                    k_w = (endX - startX) // 3 | 1 # Make sure it is odd
+                    k_h = (endY - startY) // 3 | 1
+                    blurred_face = cv2.GaussianBlur(face_roi, (k_w, k_h), 30)
