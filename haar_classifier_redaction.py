@@ -45,4 +45,10 @@ def main():
 
             # Draw a rectangle around the face, for explainability
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        # Resulting frame displayed
+        cv2.imshow('Face Anonymizer (Haar) - q to quit', frame)
+
+        # Break loop on receiving 'q' as input
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
