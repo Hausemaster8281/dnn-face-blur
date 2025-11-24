@@ -51,3 +51,10 @@ def main():
         for i in range(0, detections.shape[2]):
             # Extract the confidence/probability associated with the prediction
             confidence = detections[0, 0, i, 2]
+
+            # Filter out weak detections, ensure the `confidence` remains than the minimum confidence
+            if confidence > CONFIDENCE_THRESHOLD:
+                # Compute the (x, y)-coordinates to create the bounding box for the object
+                box = detections[0, 0, i, 3:7] * numpy.array([w, h, w, h])
+                (startX, startY, endX, endY) = box.astype("int")
+
