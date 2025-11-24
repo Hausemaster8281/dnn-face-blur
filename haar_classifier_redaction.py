@@ -51,4 +51,9 @@ def main():
         # Break loop on receiving 'q' as input
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+    # Release the video capture object, and close all windows (while destroying remaining threads)
+    cap.release()
+    cv2.destroyAllWindows()
 
+if __name__ == "__main__":
+    main()
