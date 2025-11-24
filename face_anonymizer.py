@@ -19,3 +19,12 @@ def main():
         print("Please ensure 'deploy.prototxt' and 'res10_300x300_ssd_iter_140000.caffemodel' exist in the 'models' directory, along with proper user-group access.")
         sys.exit(1)
 
+    # Initialize video capture from webcam 0
+    cap = cv2.VideoCapture(0)
+
+    if not cap.isOpened():
+        print("Error: Could not open video stream.")
+        sys.exit(1)
+
+    print(f"Face Anonymizer (DNN) , threshold {CONFIDENCE_THRESHOLD}. Press 'q' to quit.")
+
