@@ -46,3 +46,6 @@ This project implements a robust face anonymization system using OpenCV and Pyth
 *   `processing.py`: Applies blur effects and draws UI elements.
 *   `config.py`: Stores configuration constants (paths, thresholds).
 *   `models/`: Contains the `deploy.prototxt` and `.caffemodel` files.
+
+## Screenshot
+<img width="640" height="480" alt="Face Anonymizer (DNN) - Press q to quit_screenshot_25 11 2025" src="https://github.com/user-attachments/assets/621dd811-a757-49e6-8927-318220aa2be8" />
