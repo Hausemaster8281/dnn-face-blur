@@ -38,3 +38,12 @@ def main():
 
         # Acquire frame domensions
         (h, w) = frame.shape[:2]
+
+        # Construct a blob from the image, reconstructing it to 300x300 and perform mean subtraction with (104.0, 177.0, 123.0)
+        blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0,
+            (300, 300), (104.0, 177.0, 123.0))
+
+        # Pass the blob through the network for obtaining detections
+        net.setInput(blob)
+        detections = net.forward()
+
