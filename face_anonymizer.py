@@ -28,3 +28,13 @@ def main():
 
     print(f"Face Anonymizer (DNN) , threshold {CONFIDENCE_THRESHOLD}. Press 'q' to quit.")
 
+    while True:
+        # Read a frame from the video stream
+        ret, frame = cap.read()
+
+        if not ret:
+            print("Error: Failed to capture frame.")
+            break
+
+        # Acquire frame domensions
+        (h, w) = frame.shape[:2]
