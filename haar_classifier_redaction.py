@@ -30,4 +30,19 @@ def main():
 
 		# Detect faces in frame. ScaleFactor(1) = no size reduction on image, minNeighbors(5) minimum numbers contined by rectangle of candidate to retain it
         faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+        # Loop around detected faces, apply blur
+        for (x, y, w, h) in faces:
+            # region of interest (ROI) extraction, aka, face extraction
+            face_roi = frame[y:y+h, x:x+w]
+
+            # Strong gaussian blur appliad to face (within ROI) - slight tweaking of kernel size based on face size
+            k_w = w // 3 | 1 # Preferably odd (similar to classifier algorithms)
+            k_h = h // 3 | 1
+            blurred_face = cv2.GaussianBlur(face_roi, (k_w, k_h), 30)
+
+            # Replaces original ROI, with the blurred version
+            frame[y:y+h, x:x+w] = blurred_face
+
+            # Draw a rectangle around the face, for explainability
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
