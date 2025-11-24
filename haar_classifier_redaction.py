@@ -18,4 +18,11 @@ def main():
         sys.exit(1)
 
     print("Face Anonymizer (Haar Cascade) started. Press 'q' to quit.")
+    while True:
+        # Read a frame from the video stream
+        ret, frame = cap.read()
+
+        if not ret:
+            print("Error: Failed to capture frame.")
+            break
 
