@@ -57,4 +57,9 @@ def main():
                 # Compute the (x, y)-coordinates to create the bounding box for the object
                 box = detections[0, 0, i, 3:7] * numpy.array([w, h, w, h])
                 (startX, startY, endX, endY) = box.astype("int")
+                # Bounding boxes should fall within the dimensions of the frame
+                (startX, startY) = (max(0, startX), max(0, startY))
+                (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
+                # Extract the face ROI
+                face_roi = frame[startY:endY, startX:endX]
 
